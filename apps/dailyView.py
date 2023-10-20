@@ -7,13 +7,14 @@ import talib
 import pandas as pd
 from app import app
 
+
+
 # Load the CSV data into a pandas DataFrame with ISO-8859-1 encoding
 df = pd.read_csv('data/SPY_tickers.csv')
 
 # Create the tickers_data dictionary
 tickers_data = {row['Symbol']: row['Security'] for _, row in df.iterrows()}
 
-#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.title = 'Trading View'
 cache = Cache(app.server, config={
     'CACHE_TYPE': 'filesystem',
@@ -190,25 +191,37 @@ indicator_descriptions = {
     ]
 }
 
+# Common color palette for consistent styling
+COLORS = {
+    'background': '#34495e',
+    'text': '#EAEAEA',
+    'control_background': '#2C3E50',
+    'border': '#333'
+}
+
+
+# Dropdown styling using the color palette
 dropdown_style = {
     'control': {
-        'backgroundColor': '#2C3E50',
-        'borderColor': '#333',
-        'color': '#EAEAEA'
+        'backgroundColor': COLORS['control_background'],
+        'borderColor': COLORS['border'],
+        'color': COLORS['text']
     },
     'menu': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
+        'backgroundColor': COLORS['control_background'],
+        'color': COLORS['text']
     },
     'option': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
+        'backgroundColor': COLORS['control_background'],
+        'color': COLORS['text']
     },
     'singleValue': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
+        'backgroundColor': COLORS['control_background'],
+        'color': COLORS['text']
     }
 }
+
+MAX_WIDTH = "100%"  # You can adjust this as needed
 
 navbar = dbc.NavbarSimple(
     children=[
@@ -219,99 +232,90 @@ navbar = dbc.NavbarSimple(
                         id='stock-input',
                         options=[{'label': f"{name} ({ticker})", 'value': ticker} for ticker, name in tickers_data.items()],
                         value=[
-                            'SPY',
-                            'AAPL',
-                            'MSFT',
-                            'AMZN',
-                            'META',
-                            'GOOG',
-          #                  'GOOGL',
-                            'TSLA',
-         #                   'JNJ',
-          #                  'V',
-           #                 'PG',
-            #                'JPM',
+                            'SPY', 
+                            'AAPL', 
+                            #'MSFT', 
+                            #'AMZN', 
+                            #'META', 
+                            #'GOOG', 
+                            #'TSLA'
                             ],
                         multi=True,
                         searchable=True,
                         clearable=False,
                         style=dropdown_style
                     )
-                ), width=4, className="mr-0"),  # Add mr-0 class
+                ), width=4, className="mr-0"),  
                 dbc.Col(
                     [
-                        dbc.NavItem(html.Label('Select Indicators:', style={'color': '#EAEAEA'})),  # Light text color
+                        dbc.NavItem(html.Label('Select Indicators:', style={'color': COLORS['text'], 'marginRight': '10px'})),  
                         dbc.NavItem(
                             dcc.Checklist(
                                 id='indicator-checklist',
                                 options=[{'label': i, 'value': i} for i in indicator_list],
-                                value=[
-                                    'SMA50', 
-                         #           'SMA200', 
-                                    'EMA50', 
-                          #          'EMA200', 
-                                    'Upper Band', 
-                                    'Middle Band', 
-                                    'Lower Band',
-                                ],
+                                value=['SMA50', 'EMA50', 'Upper Band', 'Middle Band', 'Lower Band'],
                                 inline=True,
                                 style={
-                                    'backgroundColor': '#2C3E50',
+                                    'backgroundColor': COLORS['background'],
                                     'padding': '10px',
                                     'borderRadius': '5px'
                                 },
-                                inputStyle={
-                                    'marginRight': '10px',
-                                    'cursor': 'pointer'
-                                },
+                                inputStyle={'marginRight': '10px', 'cursor': 'pointer'},
                                 labelStyle={
-                                    'color': '#EAEAEA',  # Light text color
+                                    'color': COLORS['text'],
                                     'fontSize': '14px',
                                     'cursor': 'pointer'
                                 }
                             )
                         )
                     ],
-                    width=6, className="ml-0"  # Add ml-0 class
+                    width=6, className="ml-0"
                 )
             ],
             style={
-                'width': '100%',  # Full width of the navbar
-                'alignItems': 'center'  # Vertically centers items
+                'width': '100%',
+                'alignItems': 'center'
             }
         )
     ],
     brand="Select tickers and indicators to compare",
-    color="#1E1E1E",  # Dark background
-    dark=True,       # Indicates that the Navbar children are to be considered as light
-    brand_style={"color": "#EAEAEA"},  # Light text for brand name for better contrast
-    fluid=True
+    color="#1E1E1E",
+    dark=True,
+    brand_style={"color": COLORS['text'], "fontSize": "18px"},
+    fluid=True,
+    style={"maxWidth": MAX_WIDTH, "margin": "0 auto"}
 )
 
 body = dbc.Container(
     [
         dbc.Row(
             [
-                dbc.Col(html.Div(id='price-graph-container'), width=12),
-                dbc.Col(html.Div(id='price-descriptions'), width=12)
+                dbc.Col(html.Div(id='price-graph-container'), width=12, style={"padding": "20px"}),
+                dbc.Col(html.Div(id='price-descriptions'), width=12, style={"padding": "20px"})
             ]
         ),
     ],
-    style={'backgroundColor': '#34495e'}
+    fluid=True,  # Make the container use full width
+    style={'backgroundColor': COLORS['background'], 'maxWidth': MAX_WIDTH, 'margin': '0 auto'}
 )
+
+
 
 layout = html.Div([
     html.Div([
-        dcc.Link('Home', href='/'),
-        dcc.Link('Intraday', href='/apps/intradayView'),
-        dcc.Link('Ticker', href='/apps/tickerView'),
-    ]),
-    navbar, 
+        dcc.Link('Home', href='/', style={"marginRight": "10px"}),
+        dcc.Link('Intraday', href='/apps/intradayView', style={"marginRight": "10px"}),
+        dcc.Link('Ticker', href='/apps/tickerView', style={"marginRight": "10px"}),
+    ], style={"padding": "10px", "textAlign": "center", "maxWidth": MAX_WIDTH, "margin": "0 auto"}),
+
+    navbar,
+
     body,
-    dcc.Store(id='xaxis-range')  # Add this line to store the range of the x-axis
-    ], 
-    style={'backgroundColor': '#34495e'}
-    )
+
+    dcc.Store(id='xaxis-range')
+],
+style={'backgroundColor': COLORS['background']}
+)
 
 @app.callback(
     [Output('price-graph-container', 'children'),
@@ -403,7 +407,7 @@ def update_graph(stock_inputs, selected_indicators, xaxis_range):
 
         price_fig = {
             'data': traces,
-            'layout': {**dark_layout, **{'title': f'Price: {stock_input}', 'height': 800, 'width': 1500}}
+            'layout': {**dark_layout, **{'title': f'Price: {stock_input}', 'height': 800, 'width': 1400}}
         }
         graphs.append(dcc.Graph(figure=price_fig, id=f'price-graph-{stock_input}'))
     
@@ -416,6 +420,3 @@ def update_graph(stock_inputs, selected_indicators, xaxis_range):
     price_descriptions = [html.P(indicator_descriptions[indicator], style={'color': '#EAEAEA'}) for indicator in selected_indicators]
    
     return graphs_div, xaxis_range, price_descriptions
-
-#if __name__ == '__main__':
-#    app.run_server(debug=True, port=5010)
