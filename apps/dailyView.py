@@ -7,8 +7,6 @@ import talib
 import pandas as pd
 from app import app
 
-
-
 # Load the CSV data into a pandas DataFrame with ISO-8859-1 encoding
 df = pd.read_csv('data/SPY_tickers.csv')
 
@@ -195,7 +193,7 @@ indicator_descriptions = {
 COLORS = {
     'background': '#34495e',
     'text': '#EAEAEA',
-    'control_background': '#2C3E50',
+    'control_background': '"#1E1E1E"',
     'border': '#333'
 }
 
@@ -299,14 +297,32 @@ body = dbc.Container(
     style={'backgroundColor': COLORS['background'], 'maxWidth': MAX_WIDTH, 'margin': '0 auto'}
 )
 
+top_menu_style = {
+    'backgroundColor': "#1E1E1E",
+    'padding': '10px',
+    'borderRadius': '5px',
+    'margin': '0 auto',
+    'width': '100%',
+    'fontSize': '14px',
+    'fontColor': COLORS['text'],
+    'maxWith': MAX_WIDTH
+}
 
+menu_font_style = {
+            "marginRight": "10px", 
+            "color": "#EAEAEA", 
+            "fontWeight": "bold",
+            "textDecoration": "underline",
+            "cursor": "pointer",
+            "fontSize": "18px",
+            }
 
 layout = html.Div([
     html.Div([
-        dcc.Link('Home', href='/', style={"marginRight": "10px"}),
-        dcc.Link('Intraday', href='/apps/intradayView', style={"marginRight": "10px"}),
-        dcc.Link('Ticker', href='/apps/tickerView', style={"marginRight": "10px"}),
-    ], style={"padding": "10px", "textAlign": "center", "maxWidth": MAX_WIDTH, "margin": "0 auto"}),
+        dcc.Link('Home', href='/', style=menu_font_style),
+        dcc.Link('Intraday', href='/apps/intradayView', style=menu_font_style),
+        dcc.Link('Ticker', href='/apps/tickerView', style=menu_font_style),
+    ], style=top_menu_style),
 
     navbar,
 
