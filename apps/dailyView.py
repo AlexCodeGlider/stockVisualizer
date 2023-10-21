@@ -197,29 +197,13 @@ COLORS = {
     'border': '#333'
 }
 
-
 # Dropdown styling using the color palette
 dropdown_style = {
-    'control': {
-        'backgroundColor': COLORS['control_background'],
-        'borderColor': COLORS['border'],
-        'color': COLORS['text']
-    },
-    'menu': {
-        'backgroundColor': COLORS['control_background'],
-        'color': COLORS['text']
-    },
-    'option': {
-        'backgroundColor': COLORS['control_background'],
-        'color': COLORS['text']
-    },
-    'singleValue': {
-        'backgroundColor': COLORS['control_background'],
-        'color': COLORS['text']
-    }
+    'control': {'className': 'dropdown-control'},
+    'menu': {'className': 'dropdown-menu'},
+    'option': {'className': 'dropdown-option'},
+    'singleValue': {'className': 'dropdown-single-value'}
 }
-
-MAX_WIDTH = "100%"  # You can adjust this as needed
 
 navbar = dbc.NavbarSimple(
     children=[
@@ -270,10 +254,7 @@ navbar = dbc.NavbarSimple(
                     width=6, className="ml-0"
                 )
             ],
-            style={
-                'width': '100%',
-                'alignItems': 'center'
-            }
+            className="navbar-row"
         )
     ],
     brand="Select tickers and indicators to compare",
@@ -281,7 +262,7 @@ navbar = dbc.NavbarSimple(
     dark=True,
     brand_style={"color": COLORS['text'], "fontSize": "18px"},
     fluid=True,
-    style={"maxWidth": MAX_WIDTH, "margin": "0 auto"}
+    className="navbar-simple"
 )
 
 body = dbc.Container(
@@ -294,35 +275,15 @@ body = dbc.Container(
         ),
     ],
     fluid=True,  # Make the container use full width
-    style={'backgroundColor': COLORS['background'], 'maxWidth': MAX_WIDTH, 'margin': '0 auto'}
+    className="body-container"
 )
-
-top_menu_style = {
-    'backgroundColor': "#1E1E1E",
-    'padding': '10px',
-    'borderRadius': '5px',
-    'margin': '0 auto',
-    'width': '100%',
-    'fontSize': '14px',
-    'fontColor': COLORS['text'],
-    'maxWith': MAX_WIDTH
-}
-
-menu_font_style = {
-            "marginRight": "10px", 
-            "color": "#EAEAEA", 
-            "fontWeight": "bold",
-            "textDecoration": "underline",
-            "cursor": "pointer",
-            "fontSize": "18px",
-            }
 
 layout = html.Div([
     html.Div([
-        dcc.Link('Home', href='/', style=menu_font_style),
-        dcc.Link('Intraday', href='/apps/intradayView', style=menu_font_style),
-        dcc.Link('Ticker', href='/apps/tickerView', style=menu_font_style),
-    ], style=top_menu_style),
+        dcc.Link('Home', href='/', className="menu-font"),
+        dcc.Link('Intraday', href='/apps/intradayView', className="menu-font"),
+        dcc.Link('Ticker', href='/apps/tickerView', className="menu-font"),
+    ], className="top-menu"),
 
     navbar,
 
@@ -330,7 +291,7 @@ layout = html.Div([
 
     dcc.Store(id='xaxis-range')
 ],
-style={'backgroundColor': COLORS['background']}
+className="body-container"
 )
 
 @app.callback(

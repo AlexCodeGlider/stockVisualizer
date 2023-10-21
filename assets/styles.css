@@ -1,3 +1,75 @@
-body {
-    background-color: #34495e;
+/* styles.css */
+
+/* Common colors */
+:root {
+    --background-color: #34495e;
+    --text-color: #EAEAEA;
+    --control-background-color: #1E1E1E;
+    --border-color: #333;
+    --max-width: 100%;
+}
+
+/* Dropdown styles */
+.dropdown-control {
+    background-color: var(--control-background-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.dropdown-menu {
+    background-color: var(--control-background-color);
+    color: var(--text-color);
+}
+
+.dropdown-option {
+    background-color: var(--control-background-color);
+    color: var(--text-color);
+}
+
+.dropdown-single-value {
+    background-color: var(--control-background-color);
+    color: var(--text-color);
+}
+
+/* Navbar */
+.navbar-simple {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.navbar-row {
+    width: 100%;
+    align-items: center;
+}
+
+/* Body */
+.body-container {
+    background-color: var(--background-color);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.col-padding {
+    padding: 20px;
+}
+
+/* Top menu styles */
+.top-menu {
+    background-color: var(--control-background-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-color);
+    max-width: var(--max-width);
+}
+
+.menu-font {
+    margin-right: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 18px;
 }
