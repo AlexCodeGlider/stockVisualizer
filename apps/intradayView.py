@@ -618,6 +618,11 @@ body = dbc.Container(
 
 # Define the app layout
 layout = html.Div([
+    html.Div([
+        dcc.Link('Home', href='/', className="menu-font"),
+        dcc.Link('Daily', href='/apps/daily', className="menu-font"),
+        dcc.Link('Ticker', href='/apps/tickerView', className="menu-font"),
+    ], className="top-menu"),
     navbar, 
     body,
     dcc.Store(id='xaxis-range')  

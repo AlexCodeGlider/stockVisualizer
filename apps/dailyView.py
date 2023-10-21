@@ -284,7 +284,7 @@ body = dbc.Container(
 layout = html.Div([
     html.Div([
         dcc.Link('Home', href='/', className="menu-font"),
-        dcc.Link('Intraday', href='/apps/intradayView', className="menu-font"),
+        dcc.Link('Intraday', href='/apps/intraday', className="menu-font"),
         dcc.Link('Ticker', href='/apps/tickerView', className="menu-font"),
     ], className="top-menu"),
 

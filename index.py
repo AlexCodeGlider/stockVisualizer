@@ -21,7 +21,10 @@ def display_page(pathname):
         return ticker.layout
     elif pathname == '/':
         return html.Div([
-            html.H3("Trade View", style={'marginBottom': '30px'}),
+            html.H3("Trade View", style={
+                'color': 'white',
+                'marginBottom': '30px'
+                }),
             html.Ul([
                 html.Li(dcc.Link('Daily', href='/apps/daily', className='index-link')),
                 html.Li(dcc.Link('Intraday', href='/apps/intraday', className='index-link')),
