@@ -52,6 +52,11 @@ cache.clear()
 
 # Define the app layout
 layout = html.Div([
+    html.Div([
+        dcc.Link('Home', href='/', className="menu-font"),
+        dcc.Link('Daily', href='/apps/daily', className="menu-font"),
+        dcc.Link('Intraday', href='/apps/intraday', className="menu-font"),
+    ], className="top-menu"),
     dcc.Dropdown(
         id='ticker-dropdown',
         options=[{'label': ticker, 'value': ticker} for ticker in tickers],
