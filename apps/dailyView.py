@@ -7,8 +7,6 @@ import talib
 import pandas as pd
 from app import app
 
-app.title = 'Trading View'
-
 # Load the CSV data into a pandas DataFrame with ISO-8859-1 encoding
 df = pd.read_csv('data/SPY_tickers.csv')
 

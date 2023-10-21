@@ -544,8 +544,6 @@ def generate_normalized_heatmap_data(data):
     normalized_data = (grouped_data.set_index('time_of_day') - grouped_data.set_index('time_of_day').min()) / (grouped_data.set_index('time_of_day').max() - grouped_data.set_index('time_of_day').min())
     return normalized_data
 
-app.title = 'Intraday Stock Visualizer'
-
 # Common color palette for consistent styling
 COLORS = {
     'background': '#34495e',
