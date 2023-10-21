@@ -30,14 +30,20 @@ Ensure you have Python installed and run:
 pip install -r requirements.txt
 ```
 
-4. **Run the App**:
+4. **Create the dataset**:
+
+```
+python create_dataset.py
+```
+
+5. **Run the App**:
 
 ```
 python index.py
 ```
 
 
-5. Open a web browser and navigate to `http://127.0.0.1:8050/` to view the app.
+6. Open a web browser and navigate to `http://127.0.0.1:8050/` to view the app.
 
 ## Usage
 
