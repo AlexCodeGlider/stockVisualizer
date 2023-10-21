@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Data directory (assuming you store datasets or other large files here)
+data/
+
+# Cache directory
+cache-directory/
+
+# Environment variables
+.env
+
+# Other common ignores for Python projects
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Any IDE or editor specific files/folders
+.vscode/
+.idea/
+*.log
