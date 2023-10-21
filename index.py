@@ -1,6 +1,5 @@
 from dash import dcc, html
 from dash.dependencies import Input, Output
-
 from app import app
 from apps import dailyView as daily
 from apps import intradayView as intraday
@@ -22,13 +21,13 @@ def display_page(pathname):
         return ticker.layout
     elif pathname == '/':
         return html.Div([
-            html.H3("Welcome to the Multi-Page Dash App!"),
+            html.H3("Trade View", style={'marginBottom': '30px'}),
             html.Ul([
-                html.Li(dcc.Link('Daily', href='/apps/daily')),
-                html.Li(dcc.Link('Intraday', href='/apps/intraday')),
-                html.Li(dcc.Link('Ticker', href='/apps/ticker')),
-            ]),
-        ])
+                html.Li(dcc.Link('Daily', href='/apps/daily', className='index-link')),
+                html.Li(dcc.Link('Intraday', href='/apps/intraday', className='index-link')),
+                html.Li(dcc.Link('Ticker', href='/apps/ticker', className='index-link')),
+            ], style={'listStyleType': 'none', 'padding': '0'}),
+        ], style={'textAlign': 'center', 'paddingTop': '50px'})
     else:
         return '404'
 

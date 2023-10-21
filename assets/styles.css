@@ -1,5 +1,29 @@
 /* styles.css */
 
+/* General Background */
+body {
+    background-color: #34495e;
+    color: #d7e1ec;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation and Index Page Links */
+.nav-link, .index-link {
+    color: #EAEAEA;
+    text-decoration: none;
+    margin: 15px 0;  /* Increased top and bottom margin */
+    padding: 10px;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+    display: block;  /* Display as block to take full width and help with alignment */
+    transition: background-color 0.2s;
+}
+
+.nav-link:hover, .index-link:hover {
+    background-color: #EAEAEA;
+    color: #34495e;
+}
+
 /* Common colors */
 :root {
     --background-color: #34495e;
