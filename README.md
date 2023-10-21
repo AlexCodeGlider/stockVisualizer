@@ -23,27 +23,43 @@ git clone https://github.com/AlexCodeGlider/stockVisualizer.git
 cd stockVisualizer
 ```
 
-3. **Install Required Packages**:
-Ensure you have Python installed and run:
+3. **Set Up a Python 3.9 Virtual Environment**:
+First, ensure you have Python 3.9 installed. Then, create a virtual environment using `venv`:
+
+```
+python3.9 -m venv venv_name
+```
+Replace `venv_name` with your desired name for the virtual environment. To activate the virtual environment:
+
+- On Windows:
+  ```
+  .\venv_name\Scripts\activate
+  ```
+- On macOS and Linux:
+  ```
+  source venv_name/bin/activate
+  ```
+
+4. **Install Required Packages**:
+With the virtual environment activated, run:
 
 ```
 pip install -r requirements.txt
 ```
 
-4. **Create the dataset**:
+5. **Create the dataset**:
 
 ```
 python create_dataset.py
 ```
 
-5. **Run the App**:
+6. **Run the App**:
 
 ```
 python index.py
 ```
 
-
-6. Open a web browser and navigate to `http://127.0.0.1:8050/` to view the app.
+7. Open a web browser and navigate to `http://127.0.0.1:8050/` to view the app.
 
 ## Usage
 
