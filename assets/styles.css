@@ -3,7 +3,7 @@
 /* General Background */
 body {
     background-color: #34495e;
-    color: #d7e1ec;
+    color: #1f1f1f;
     font-family: Arial, sans-serif;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 
 /* Targeting the dropdown items using the 'select-menu-outer' class */
-.select-menu-outer .dropdown-option {
+.select-menu-outer {
     color: var(--dropdown-text-color) !important;
 }
 
