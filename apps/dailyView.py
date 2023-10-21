@@ -7,13 +7,14 @@ import talib
 import pandas as pd
 from app import app
 
+app.title = 'Trading View'
+
 # Load the CSV data into a pandas DataFrame with ISO-8859-1 encoding
 df = pd.read_csv('data/SPY_tickers.csv')
 
 # Create the tickers_data dictionary
 tickers_data = {row['Symbol']: row['Security'] for _, row in df.iterrows()}
 
-app.title = 'Trading View'
 cache = Cache(app.server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory'
@@ -209,25 +210,29 @@ navbar = dbc.NavbarSimple(
     children=[
         dbc.Row(
             [
-                dbc.Col(dbc.NavItem(
-                    dcc.Dropdown(
-                        id='stock-input',
-                        options=[{'label': f"{name} ({ticker})", 'value': ticker} for ticker, name in tickers_data.items()],
-                        value=[
-                            'SPY', 
-                            'AAPL', 
-                            #'MSFT', 
-                            #'AMZN', 
-                            #'META', 
-                            #'GOOG', 
-                            #'TSLA'
-                            ],
-                        multi=True,
-                        searchable=True,
-                        clearable=False,
-                        style=dropdown_style
-                    )
-                ), width=4, className="mr-0"),  
+                dbc.Col(
+                    dbc.NavItem(
+                        dcc.Dropdown(
+                            id='stock-input',
+                            options=[{'label': f"{name} ({ticker})", 'value': ticker} for ticker, name in tickers_data.items()],
+                            value=[
+                                'SPY', 
+                                'AAPL', 
+                                #'MSFT', 
+                                #'AMZN', 
+                                #'META', 
+                                #'GOOG', 
+                                #'TSLA'
+                                ],
+                            multi=True,
+                            searchable=True,
+                            clearable=False,
+                            style=dropdown_style
+                        )
+                    ), 
+                    width=4, 
+                    className="mr-0"
+                ),  
                 dbc.Col(
                     [
                         dbc.NavItem(html.Label('Select Indicators:', style={'color': COLORS['text'], 'marginRight': '10px'})),  

@@ -546,29 +546,26 @@ def generate_normalized_heatmap_data(data):
 
 app.title = 'Intraday Stock Visualizer'
 
+# Common color palette for consistent styling
+COLORS = {
+    'background': '#34495e',
+    'text': '#EAEAEA',
+    'control_background': '"#1E1E1E"',
+    'border': '#333'
+}
+
+# Dropdown styling using the color palette
 dropdown_style = {
-    'control': {
-        'backgroundColor': '#2C3E50',
-        'borderColor': '#333',
-        'color': '#EAEAEA'
-    },
-    'menu': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
-    },
-    'option': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
-    },
-    'singleValue': {
-        'backgroundColor': '#2C3E50',
-        'color': '#EAEAEA'
-    }
+    'control': {'className': 'dropdown-control'},
+    'menu': {'className': 'dropdown-menu'},
+    'option': {'className': 'dropdown-option'},
+    'singleValue': {'className': 'dropdown-single-value'}
 }
 
 navbar = dbc.NavbarSimple(
     children=[
-    
+        dbc.Row(
+            [
                 dbc.Col(
                     dbc.NavItem(
                         dcc.Dropdown(
@@ -593,10 +590,20 @@ navbar = dbc.NavbarSimple(
                             style=dropdown_style
                         )
                     ), 
-                    width=6, className="mr-0"  # fixed the closing parenthesis
+                    width=8, 
+                    className="mr-0"  # fixed the closing parenthesis
                 )
-            ]
+            ],
+            className="navbar-row"
         )
+    ],
+    brand="Intraday Stock Visualizer",
+    color="#1E1E1E",
+    dark=True,
+    brand_style={"color": COLORS['text'], "fontSize": "18px"},
+    fluid=True,
+    className="navbar-simple"
+)
 
 # Define the body layout
 body = dbc.Container(

@@ -31,28 +31,18 @@ body {
     --control-background-color: #1E1E1E;
     --border-color: #333;
     --max-width: 100%;
+    --dropdown-text-color: #B0B0B0
 }
 
-/* Dropdown styles */
-.dropdown-control {
-    background-color: var(--control-background-color);
-    border-color: var(--border-color);
-    color: var(--text-color);
+/* Override Bootstrap Dropdown styles */
+.dropdown-control .css-1wa3eu0-placeholder,
+.dropdown-control .css-1uccc91-singleValue {
+    color: var(--dropdown-text-color) !important;
 }
 
-.dropdown-menu {
-    background-color: var(--control-background-color);
-    color: var(--text-color);
-}
-
-.dropdown-option {
-    background-color: var(--control-background-color);
-    color: var(--text-color);
-}
-
-.dropdown-single-value {
-    background-color: var(--control-background-color);
-    color: var(--text-color);
+/* Targeting the dropdown items using the 'select-menu-outer' class */
+.select-menu-outer .dropdown-option {
+    color: var(--dropdown-text-color) !important;
 }
 
 /* Navbar */
