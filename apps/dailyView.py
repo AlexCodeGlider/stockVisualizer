@@ -216,11 +216,11 @@ navbar = dbc.NavbarSimple(
                             value=[
                                 'SPY', 
                                 'AAPL', 
-                                #'MSFT', 
-                                #'AMZN', 
+                                'MSFT', 
+                                'AMZN', 
                                 #'META', 
-                                #'GOOG', 
-                                #'TSLA'
+                                'GOOG', 
+                                'TSLA'
                                 ],
                             multi=True,
                             searchable=True,
