@@ -13,6 +13,19 @@ df = pd.read_csv('data/SPY_tickers.csv')
 # Create the tickers_data dictionary
 tickers_data = {row['Symbol']: row['Security'] for _, row in df.iterrows()}
 
+default_tickers = [
+    'SPY',
+    'DIA',
+    'QQQ', 
+    'AAPL', 
+    'MSFT', 
+    'AMZN', 
+    #'META', 
+    'GOOG',
+    'NVDA', 
+    'TSLA'
+    ]
+
 cache = Cache(app.server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory'
@@ -213,15 +226,7 @@ navbar = dbc.NavbarSimple(
                         dcc.Dropdown(
                             id='stock-input',
                             options=[{'label': f"{name} ({ticker})", 'value': ticker} for ticker, name in tickers_data.items()],
-                            value=[
-                                'SPY', 
-                                'AAPL', 
-                                'MSFT', 
-                                'AMZN', 
-                                #'META', 
-                                'GOOG', 
-                                'TSLA'
-                                ],
+                            value=default_tickers,
                             multi=True,
                             searchable=True,
                             clearable=False,
